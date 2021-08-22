@@ -4,7 +4,7 @@ const loader = document.getElementById('loader');
 let photosarray = [];
 
 const apikey = config.SECRET_API_KEY;
-const count = 10;
+const count = 30;
 
 let ready = false;
 let noofimageloaded =0 ;
@@ -19,14 +19,17 @@ function imageloaded()
   if(noofimageloaded === totalimages)
   {
     ready =true;
-    console.log('ready:' , ready);
+    loader.hidden = true;
+    fetchphotos();
+    //console.log('ready:' , ready);
   }
 }
 
 function displayphotos()
 {
+  noofimageloaded = 0;
   totalimages = photosarray.length;
-  console.log('totalimages:' , totalimages);
+  //console.log('totalimages:' , totalimages);
   //running dunction for each object to create and append in dom
   photosarray.forEach(photo=>
     {
@@ -63,7 +66,7 @@ window.addEventListener('scroll' , ()=>
   if(window.innerHeight + window.scrollY >= document.body.offsetHeight-1000 && ready)
   {
     ready = false;
-    console.log('more photos loaded');
+    //console.log('more photos loaded');
     displayphotos();
   }
   
